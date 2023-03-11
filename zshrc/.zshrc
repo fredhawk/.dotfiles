@@ -133,3 +133,8 @@ eval "`fnm env`"
 export PNPM_HOME="/home/fred/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 
+
+# pnpm
+export PNPM_HOME="/home/fred/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
