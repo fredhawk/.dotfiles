@@ -6,6 +6,6 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 require("fred.remaps")
-require("fred.options")
 require("fred.plugins")
+require("fred.options")
 
