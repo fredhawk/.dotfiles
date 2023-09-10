@@ -25,6 +25,9 @@ set $menu wofi -c ~/.config/wofi/config -I
 
 set $powermenu ~/.config/waybar/scripts/power-menu.sh
 
+# Language switching stuff.
+exec_always fcitx5 -d --replace
+
 ### Idle configuration
 exec swayidle -w\
     timeout 5000 'swaylock -f -C ~/.config/swaylock/config'\
