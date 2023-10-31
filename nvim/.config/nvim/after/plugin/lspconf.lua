@@ -54,6 +54,16 @@ local servers = {
   -- pyright = {},
   rust_analyzer = {},
   -- tsserver = {},
+  lua_ls = {
+    Lua = {
+      workspace = {
+        checkThirdParty = false,
+      },
+      telemetry = {
+        enable = false,
+      },
+    }
+  },
 
   -- sumneko_lua = {
   --   Lua = {

@@ -20,7 +20,7 @@ require('lazy').setup({
       'williamboman/mason-lspconfig.nvim',
 
       -- Useful status updates for LSP
-      'j-hui/fidget.nvim',
+      { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing
       'folke/neodev.nvim',
@@ -37,9 +37,10 @@ require('lazy').setup({
 
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
-    buidl = function()
-      pcall(require('nvim-treesitter.install').update { with_sync = true })
-    end,
+    -- build = function()
+    --   pcall(require('nvim-treesitter.install').update { with_sync = true })
+    -- end,
+    build = ':TSUpdate',
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
     }
@@ -59,7 +60,7 @@ require('lazy').setup({
   'folke/tokyonight.nvim',
   -- 'navarasu/onedark.nvim' -- Theme inspired by Atom,
   'nvim-lualine/lualine.nvim', -- Fancier statusline,
-  'lukas-reineke/indent-blankline.nvim', -- Add indentation guides even on blank lines,
+  { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = { } }, -- Add indentation guides even on blank lines,
   'numToStr/Comment.nvim', -- "gc" to comment visual regions/lines,
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically,
 
