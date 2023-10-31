@@ -110,6 +110,10 @@ alias tma="tmux a -t"
 alias tls="tmux ls"
 alias tmk="tmux kill-session -t"
 
+alias e="eza -l"
+
+alias bat="batcat"
+
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 alias glog="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --branches"
@@ -125,14 +129,15 @@ git commit -m "Initial commit"
 }
 
 eval "$(starship init zsh)"
-# source /home/fred/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-
-# fnm
-export PATH=/home/fred/.fnm:$PATH
-eval "`fnm env`"
+# source /home/fwk/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # pnpm
-export PNPM_HOME="/home/fred/.local/share/pnpm"
+export PNPM_HOME="/home/fwk/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
+
+# fnm
+export PATH="/home/fwk/.local/share/fnm:$PATH"
+eval "`fnm env`"
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
