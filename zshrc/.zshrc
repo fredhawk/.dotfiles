@@ -110,7 +110,7 @@ alias tma="tmux a -t"
 alias tls="tmux ls"
 alias tmk="tmux kill-session -t"
 
-alias e="eza -l"
+alias e="eza -al"
 
 alias bat="batcat"
 
