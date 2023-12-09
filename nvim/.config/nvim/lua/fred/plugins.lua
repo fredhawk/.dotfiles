@@ -86,9 +86,9 @@ require('lazy').setup({
   'theHamsta/nvim-dap-virtual-text',
   { "rcarriga/nvim-dap-ui",      dependencies = { "mfussenegger/nvim-dap" } },
   { "mxsdev/nvim-dap-vscode-js", dependencies = { "mfussenegger/nvim-dap" } },
-  {
-    "microsoft/vscode-js-debug",
-    lazy = true,
-    build = "npm install --legacy-peer-deps && npm run compile"
-  },
+  -- {
+  --   "microsoft/vscode-js-debug",
+  --   lazy = true,
+  --   build = "npm install --legacy-peer-deps && npm run compile"
+  -- },
 })
