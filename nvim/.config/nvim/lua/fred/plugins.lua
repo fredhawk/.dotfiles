@@ -69,17 +69,10 @@ require('lazy').setup({
 
   'folke/tokyonight.nvim',
   -- 'navarasu/onedark.nvim' -- Theme inspired by Atom,
-<<<<<<< Updated upstream
   'nvim-lualine/lualine.nvim', -- Fancier statusline,
   { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = { } }, -- Add indentation guides even on blank lines,
   'numToStr/Comment.nvim', -- "gc" to comment visual regions/lines,
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically,
-=======
-  'nvim-lualine/lualine.nvim',           -- Fancier statusline,
-  'lukas-reineke/indent-blankline.nvim', -- Add indentation guides even on blank lines,
-  'numToStr/Comment.nvim',               -- "gc" to comment visual regions/lines,
-  'tpope/vim-sleuth',                    -- Detect tabstop and shiftwidth automatically,
->>>>>>> Stashed changes
 
   -- Fuzzy Finder (files, lsp, etc)
   { 'nvim-telescope/telescope.nvim',            branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
