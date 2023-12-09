@@ -30,8 +30,8 @@ exec_always fcitx5 -d --replace
 
 ### Idle configuration
 exec swayidle -w\
-    timeout 5000 'swaylock -f -C ~/.config/swaylock/config'\
-    timeout 5300 'swaymsg "output * power off"' \
+    timeout 10000 'swaylock -f -C ~/.config/swaylock/config'\
+    timeout 10300 'swaymsg "output * power off"' \
     resume 'swaymsg "output * power on"' \
     before-sleep 'swaylock -C ~/.config/swaylock/config'
 # This will lock your screen after 300 seconds of inactivity, then turn off

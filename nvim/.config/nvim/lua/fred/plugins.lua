@@ -27,6 +27,16 @@ require('lazy').setup({
     },
   },
 
+  -- Lua
+  {
+    "folke/twilight.nvim",
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    }
+  },
+
   -- Undootreee
   'mbbill/undotree',
 
@@ -46,8 +56,8 @@ require('lazy').setup({
     }
   },
   {
-      "windwp/nvim-autopairs",
-      config = function() require("nvim-autopairs").setup {} end
+    "windwp/nvim-autopairs",
+    config = function() require("nvim-autopairs").setup {} end
   },
 
   'windwp/nvim-ts-autotag',
@@ -59,23 +69,30 @@ require('lazy').setup({
 
   'folke/tokyonight.nvim',
   -- 'navarasu/onedark.nvim' -- Theme inspired by Atom,
+<<<<<<< Updated upstream
   'nvim-lualine/lualine.nvim', -- Fancier statusline,
   { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = { } }, -- Add indentation guides even on blank lines,
   'numToStr/Comment.nvim', -- "gc" to comment visual regions/lines,
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically,
+=======
+  'nvim-lualine/lualine.nvim',           -- Fancier statusline,
+  'lukas-reineke/indent-blankline.nvim', -- Add indentation guides even on blank lines,
+  'numToStr/Comment.nvim',               -- "gc" to comment visual regions/lines,
+  'tpope/vim-sleuth',                    -- Detect tabstop and shiftwidth automatically,
+>>>>>>> Stashed changes
 
   -- Fuzzy Finder (files, lsp, etc)
-  { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
+  { 'nvim-telescope/telescope.nvim',            branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
-  { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', cond = vim.fn.executable 'make' == 1 },
+  { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make',   cond = vim.fn.executable 'make' == 1 },
   'christoomey/vim-tmux-navigator',
 
   -- Dap setup
   'mfussenegger/nvim-dap',
   'theHamsta/nvim-dap-virtual-text',
-  { "rcarriga/nvim-dap-ui", dependencies = {"mfussenegger/nvim-dap"} },
-  { "mxsdev/nvim-dap-vscode-js", dependencies = {"mfussenegger/nvim-dap"} },
+  { "rcarriga/nvim-dap-ui",      dependencies = { "mfussenegger/nvim-dap" } },
+  { "mxsdev/nvim-dap-vscode-js", dependencies = { "mfussenegger/nvim-dap" } },
   {
     "microsoft/vscode-js-debug",
     lazy = true,
