@@ -135,7 +135,10 @@ eval "$(starship init zsh)"
 
 # pnpm
 export PNPM_HOME="/home/fwk/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
 # pnpm end
 
 # fnm
