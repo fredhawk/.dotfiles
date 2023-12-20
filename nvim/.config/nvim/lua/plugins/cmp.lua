@@ -18,6 +18,9 @@ return {
 
       -- Adds a number of user-friendly snippets
       'rafamadriz/friendly-snippets',
+
+      -- Adds VS Code style pictograms to cmp
+      'onsails/lspkind.nvim',
     },
     config = function()
       -- nvim-cmp setup
@@ -62,10 +65,19 @@ return {
           end, { 'i', 's' }),
         },
         sources = {
+          { name = 'codeium' },
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'path' },
           { name = 'buffer' },
+        },
+        formatting = {
+          format = require('lspkind').cmp_format({
+            mode = "symbol",
+            maxwidth = 50,
+            ellipsis_char = '...',
+            symbol_map = { Codeium = "", }
+          })
         },
       }
     end
