@@ -68,7 +68,7 @@ return {
         -- gopls = {},
         -- pyright = {},
         rust_analyzer = {},
-        -- tsserver = {},
+        tsserver = {},
         lua_ls = {
           Lua = {
             workspace = {
