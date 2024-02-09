@@ -17,6 +17,7 @@ return {
 
             -- Extend filetypes snippets with others, ex add css snippets to javascript
             -- ls.filetype_extend("javascript", { "css" })
+            ls.filetype_extend("astro", { "css", "javascript", "typescript" })
 
             -- Load the snippets from nvim folder /lua/snippets. load all lua files there.
             snip_loader.lazy_load({paths = vim.fn.stdpath("config") .. "/lua/snippets"})
