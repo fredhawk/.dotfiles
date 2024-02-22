@@ -1,5 +1,6 @@
 return {
 	"laytan/cloak.nvim",
+	event = "VeryLazy",
 	config = function()
 		require("cloak").setup({
 			enabled = true,
@@ -29,6 +30,6 @@ return {
 			},
 		})
 
-        vim.keymap.set("n", "<leader>cl", ":CloakToggle<CR>", { silent = true, desc = 'C[l]loak Toggle' })
+		vim.keymap.set("n", "<leader>cl", ":CloakToggle<CR>", { silent = true, desc = "C[l]loak Toggle" })
 	end,
 }
