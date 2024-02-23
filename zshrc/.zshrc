@@ -101,6 +101,8 @@ export EDITOR='nvim'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+export PATH="$HOME/.tmuxifier/bin:$PATH"
+eval "$(tmuxifier init -)"
 
 alias v="nvim"
 alias vim="nvim"
@@ -110,7 +112,7 @@ alias tma="tmux a -t"
 alias tls="tmux ls"
 alias tmk="tmux kill-session -t"
 
-alias e="eza -al"
+alias e="eza --icons -F -H --group-directories-first --git -1 -al"
 
 alias bat="batcat"
 
