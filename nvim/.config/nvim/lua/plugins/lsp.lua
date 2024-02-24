@@ -1,7 +1,7 @@
 return {
 	{ -- LSP Configuration & Plugins
 		"neovim/nvim-lspconfig",
-		event = { "BufReadPost" },
+		-- event = { "BufReadPost" },
 		dependencies = {
 			-- Automatically install LSPs to stdpath for neovim
 			"williamboman/mason.nvim",
