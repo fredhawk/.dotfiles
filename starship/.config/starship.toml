@@ -71,17 +71,17 @@ format = " [$symbol$branch]($style) "
 commit_hash_length = 4
 tag_symbol = '🔖 '
 
-[git_state]
-cherry_pick = "CHERRY PICKING"
-rebase = "REBASING"
-merge = "MERGING"
-revert = "REVERTING"
-bisect = "BISECTING"
-am = "AM"
-am_or_rebase = "AM/REBASE"
-progress_divider = " of "
-style = "bold yellow"
-disabled = false
+# [git_state]
+# cherry_pick = "CHERRY PICKING"
+# rebase = "REBASING"
+# merge = "MERGING"
+# revert = "REVERTING"
+# bisect = "BISECTING"
+# am = "AM"
+# am_or_rebase = "AM/REBASE"
+# progress_divider = " of "
+# style = "bold yellow"
+# disabled = false
 
 [git_status]
 conflicted = '='
