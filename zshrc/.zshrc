@@ -104,23 +104,34 @@ export EDITOR='nvim'
 export PATH="$HOME/.tmuxifier/bin:$PATH"
 eval "$(tmuxifier init -)"
 
+# Nvim
 alias v="nvim"
 alias vim="nvim"
-# alias vi="nvim"
+
+# Tmux
 alias tms="tmux new-session -s"
 alias tma="tmux a -t"
 alias tls="tmux ls"
 alias tmk="tmux kill-session -t"
 
-alias e="eza --icons -F -H --group-directories-first --git -1 -al"
+# Tmuxifier
+alias tfls="tmuxifier load-session"
+alias tfns="tmuxifier new-session"
 
-alias bat="batcat"
-
+# Git
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 alias glog="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --branches"
 
+# Lazygit
+alias lg="lazygit"
+
+# Eza
+alias e="eza --icons -F -H --group-directories-first --git -1 -al"
 alias ez="eza -l"
+
+alias bat="batcat"
+
 
 function node-proj {
 git init
