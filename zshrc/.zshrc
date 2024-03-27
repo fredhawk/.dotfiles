@@ -70,7 +70,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git sudo systemd yarn z node zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git sudo systemd z zsh-autosuggestions zsh-syntax-highlighting docker docker-compose)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -101,22 +101,18 @@ export EDITOR='nvim'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-export PATH="$HOME/.tmuxifier/bin:$PATH"
-eval "$(tmuxifier init -)"
 
 # Nvim
 alias v="nvim"
 alias vim="nvim"
 
 # Tmux
-alias tms="tmux new-session -s"
-alias tma="tmux a -t"
 alias tls="tmux ls"
 alias tmk="tmux kill-session -t"
-
-# Tmuxifier
-alias tfls="tmuxifier load-session"
-alias tfns="tmuxifier new-session"
+alias mux="tmuxinator"
+alias muxs="tmuxinator start"
+alias muxn="tmuxinator new"
+alias muxl="tmuxinator new --local"
 
 # Git
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
@@ -130,9 +126,6 @@ alias lg="lazygit"
 alias e="eza --icons -F -H --group-directories-first --git -1 -al"
 alias ez="eza -l"
 
-alias bat="batcat"
-
-
 function node-proj {
 git init
 npx license MIT
@@ -144,18 +137,18 @@ git commit -m "Initial commit"
 }
 
 eval "$(starship init zsh)"
-# source /home/fwk/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # pnpm
-export PNPM_HOME="/home/fwk/.local/share/pnpm"
+export PNPM_HOME="/home/skyhawk/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
 
-# fnm
-export PATH="/home/fwk/.local/share/fnm:$PATH"
-eval "`fnm env`"
+# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+BAT_THEME="Catppuccin Mocha"
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# fnm
+export PATH="/home/skyhawk/.local/share/fnm:$PATH"
+eval "`fnm env`"
