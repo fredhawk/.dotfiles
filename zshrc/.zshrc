@@ -144,6 +144,9 @@ eval "$(starship init zsh)"
 export PATH="$HOME/.tmuxifier/bin:$PATH"
 eval "$(tmuxifier init -)"
 
+# cargo
+export PATH=$PATH:~/.cargo/bin/
+
 # pnpm
 export PNPM_HOME="/home/skyhawk/.local/share/pnpm"
 case ":$PATH:" in
