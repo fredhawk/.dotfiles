@@ -109,10 +109,11 @@ alias vim="nvim"
 # Tmux
 alias tls="tmux ls"
 alias tmk="tmux kill-session -t"
-alias mux="tmuxinator"
-alias muxs="tmuxinator start"
-alias muxn="tmuxinator new"
-alias muxl="tmuxinator new --local"
+alias mux="tmuxifier"
+alias muxnw="tmuxifier new-window"
+alias muxlw="tmuxifier load-window"
+alias muxns="tmuxifier new-session"
+alias muxls="tmuxifier load-session"
 
 # Git
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
@@ -136,7 +137,12 @@ git add -A
 git commit -m "Initial commit"
 }
 
+# Starship
 eval "$(starship init zsh)"
+
+#Tmuxifier
+export PATH="$HOME/.tmuxifier/bin:$PATH"
+eval "$(tmuxifier init -)"
 
 # pnpm
 export PNPM_HOME="/home/skyhawk/.local/share/pnpm"
