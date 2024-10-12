@@ -161,3 +161,7 @@ BAT_THEME="Catppuccin Mocha"
 # fnm
 export PATH="/home/skyhawk/.local/share/fnm:$PATH"
 eval "`fnm env`"
+
+. "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh)"
