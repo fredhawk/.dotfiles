@@ -165,3 +165,4 @@ eval "`fnm env`"
 . "$HOME/.atuin/bin/env"
 
 eval "$(atuin init zsh)"
+eval "$(direnv hook zsh)"
