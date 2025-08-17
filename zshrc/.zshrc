@@ -165,3 +165,8 @@ eval "`fnm env`"
 . "$HOME/.atuin/bin/env"
 
 eval "$(atuin init zsh)"
+# ensure compatibility tmux <-> direnv
+if [ -n "$TMUX" ] && [ -n "$DIRENV_DIR" ]; then
+    unset -m "DIRENV_*"
+fi
+eval "$(direnv hook zsh)"
