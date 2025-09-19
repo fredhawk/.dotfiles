@@ -1,0 +1,88 @@
+#!/usr/bin/bash
+
+# Package managers
+paru
+yay
+pnpm
+
+# Languages
+go
+node
+nix
+rustup?
+
+# Other Fonts
+noto-fonts
+noto-fonts-emoji
+noto-color-emooji
+jetbrains-mono
+font-awesome
+
+# Myterm
+batcat
+wezterm
+kitty
+tmux
+eza
+fd
+lazygit
+ripgrep
+fx
+yazi
+tabiew
+yt-dlp
+lazydocker
+github-cli
+just
+fastfetch
+btop
+jqp
+nerd-fonts-symbols
+tldr
+neovim
+
+# Mybash
+starship
+bash
+bash-completion
+tar
+multitail
+wget
+unzip
+fontconfig
+fzf
+zoxide
+fira-code
+
+# Core
+curl
+git
+gcc
+gnumake
+vim
+
+# Graphical
+firefox
+zen
+chrome
+calibre
+discord
+spotify?
+obsidian
+vlc
+qbittorrent
+
+# Hyprland
+hyprland
+waybar
+hyprlock
+hypridle
+hyprpaper
+rofi/walker
+dunst?
+hyprpicker
+flameshot
+wlogout
+cliphist
+hyprsunset
+
