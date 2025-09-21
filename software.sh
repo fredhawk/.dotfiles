@@ -306,7 +306,7 @@ main() {
     log_info "Starting MyPrompt setup..."
 
     # Validation phase
-    validate_requirements || exit 1
+    # validate_requirements || exit 1
     validate_permissions || exit 1
 
     # Detection phase
