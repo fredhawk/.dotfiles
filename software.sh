@@ -76,7 +76,7 @@ validate_permissions() {
 }
 
 install_core_packages() {
-    local packages="paru git curl wget gcc gnumake vim"
+    local packages="git curl wget gcc gnumake vim"
     local aur_helper=""
 
     # Install AUR helper if needed
