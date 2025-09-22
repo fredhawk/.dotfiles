@@ -341,6 +341,9 @@ main() {
     # Installation phase
     install_core_packages || exit 1
     install_languages_packages || exit 1
+    install_myterm_packages || exit 1
+    install_myprompt_packages || exit 1
+    install_graphical_packages || exit 1
     install_fonts_packages || exit 1
     # install_nerd_font
     # install_fira_font
