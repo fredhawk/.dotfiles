@@ -243,63 +243,86 @@ install_hyprland_packages() {
     $aur_helper -S --needed --noconfirm $packages
 }
 
-# noto-fonts
-# noto-fonts-emoji
-# noto-color-emooji
-# jetbrains-mono
-# font-awesome
-# nerd-fonts-symbols
-install_nerd_font() {
-    local font_name="MesloLGS Nerd Font"
+# noto-fonts noto-fonts-emoji noto-color-emooji jetbrains-mono font-awesome nerd-fonts-symbols fira-code
+install_fonts_packages() {
+    local packages="ttf-firacode-nerd woff2-font-awesome"
+    local aur_helper=""
 
-    if fc-list | grep -qi "meslo"; then
-        log_info "Nerd font already installed"
-        return 0
-    fi
-    log_info "Installing $font_name..."
-
-    local font_url="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Meslo.zip"
-    local temp_dir
-    temp_dir=$(mktemp -d)
-
-    if wget -q "$font_url" -O "$temp_dir/Meslo.zip"; then
-        unzip -q "$temp_dir/Meslo.zip" -d "$temp_dir"
-        mkdir -p "$FONT_DIR/MesloLGS"
-        find "$temp_dir" -name "*.ttf" -exec mv {} "$FONT_DIR/MesloLGS/" \;
-        fc-cache -fv >/dev/null 2>&1
-        log_success "Font installed successfully"
+    # Install AUR helper if needed
+    if command_exists yay; then
+        aur_helper="yay"
+    elif command_exists paru; then
+        aur_helper="paru"
     else
-        log_warning "Failed to download font"
+        log_info "Installing yay AUR helper..."
+        $PRIVILEGE_CMD pacman -S --needed --noconfirm base-devel git
+
+        local temp_dir
+        temp_dir=$(mktemp -d)
+        cd "$temp_dir"
+        git clone https://aur.archlinux.org/yay.git
+        cd yay
+        makepkg -si --noconfirm
+        cd "$MYBASH_DIR"
+        rm -rf "$temp_dir"
+        aur_helper="yay"
     fi
 
-    rm -rf "$temp_dir"
+    log_info "Installing packages with $aur_helper..."
+    $aur_helper -S --needed --noconfirm $packages
 }
 
-install_fira_font() {
-    local font_name="FiraCode Nerd Font"
+# install_nerd_font() {
+#     local font_name="MesloLGS Nerd Font"
+#
+#     if fc-list | grep -qi "meslo"; then
+#         log_info "Nerd font already installed"
+#         return 0
+#     fi
+#     log_info "Installing $font_name..."
+#
+#     local font_url="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Meslo.zip"
+#     local temp_dir
+#     temp_dir=$(mktemp -d)
+#
+#     if wget -q "$font_url" -O "$temp_dir/Meslo.zip"; then
+#         unzip -q "$temp_dir/Meslo.zip" -d "$temp_dir"
+#         mkdir -p "$FONT_DIR/MesloLGS"
+#         find "$temp_dir" -name "*.ttf" -exec mv {} "$FONT_DIR/MesloLGS/" \;
+#         fc-cache -fv >/dev/null 2>&1
+#         log_success "Font installed successfully"
+#     else
+#         log_warning "Failed to download font"
+#     fi
+#
+#     rm -rf "$temp_dir"
+# }
 
-    if fc-list | grep -qi "fira"; then
-        log_info "Fira font already installed"
-        return 0
-    fi
-    log_info "Installing $font_name..."
-
-    local font_url="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip"
-    local temp_dir
-    temp_dir=$(mktemp -d)
-
-    if wget -q "$font_url" -O "$temp_dir/FiraCode.zip"; then
-        unzip -q "$temp_dir/FiraCode.zip" -d "$temp_dir"
-        mkdir -p "$FONT_DIR/FiraCode"
-        find "$temp_dir" -name "*.ttf" -exec mv {} "$FONT_DIR/FiraCode/" \;
-        fc-cache -fv >/dev/null 2>&1
-        log_success "Font installed successfully"
-    else
-        log_warning "Failed to download font"
-    fi
-
-    rm -rf "$temp_dir"
-}
+# install_fira_font() {
+#     local font_name="FiraCode Nerd Font"
+#
+#     if fc-list | grep -qi "fira"; then
+#         log_info "Fira font already installed"
+#         return 0
+#     fi
+#     log_info "Installing $font_name..."
+#
+#     local font_url="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip"
+#     local temp_dir
+#     temp_dir=$(mktemp -d)
+#
+#     if wget -q "$font_url" -O "$temp_dir/FiraCode.zip"; then
+#         unzip -q "$temp_dir/FiraCode.zip" -d "$temp_dir"
+#         mkdir -p "$FONT_DIR/FiraCode"
+#         find "$temp_dir" -name "*.ttf" -exec mv {} "$FONT_DIR/FiraCode/" \;
+#         fc-cache -fv >/dev/null 2>&1
+#         log_success "Font installed successfully"
+#     else
+#         log_warning "Failed to download font"
+#     fi
+#
+#     rm -rf "$temp_dir"
+# }
 
 # Main execution
 main() {
@@ -318,8 +341,9 @@ main() {
     # Installation phase
     install_core_packages || exit 1
     install_languages_packages || exit 1
-    install_nerd_font
-    install_fira_font
+    install_fonts_packages || exit 1
+    # install_nerd_font
+    # install_fira_font
 
     log_success "Setup completed successfully!"
     log_info "Please restart your shell or run 'source ~/.bashrc' to apply changes"
