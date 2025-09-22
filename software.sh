@@ -187,7 +187,7 @@ install_myterm_packages() {
     $aur_helper -S --needed --noconfirm $packages
 }
 
-install_mypromt_packages() {
+install_myprompt_packages() {
     local packages="starship bash bash-completion tar multitail wget unzip fontconfig fzf zoxide"
     local aur_helper=""
 
