@@ -351,19 +351,131 @@ install_fira_font() {
     rm -rf "$temp_dir"
 }
 
+install_tpm() {
+    local tpm_dir="${HOME}/.tmux/plugins/tpm/"
+    if [[ -d "$tpm_dir" ]]; then
+        log_info "TPM already installed"
+        return 0
+    fi
+
+    log_info "Installing TPM..."
+    if git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm; then
+        # if curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/ain/install.sh | sh; then
+        log_success "TPM installed successfully"
+    else
+        log_error "Failed to install TPM"
+        return 1
+    fi
+}
+
+# Configuration functions
+setup_gitconfig() {
+    local user_home
+    user_home=$(get_user_home)
+    local config_file="$user_home/.gitconfig"
+
+    if [ -f "$SCRIPT_DIR/myterm/.gitconfig" ]; then
+        ln -sf "$SCRIPT_DIR/myterm/.gitconfig" "$config_file"
+        log_success ".gitconfig linked"
+    else
+        log_warning ".gitconfig file not found"
+    fi
+}
+
+setup_wezterm_config() {
+    local user_home
+    user_home=$(get_user_home)
+    local config_file="$user_home/.wezterm.lua"
+
+    if [ -f "$SCRIPT_DIR/myterm/.wezterm.lua" ]; then
+        ln -sf "$SCRIPT_DIR/myterm/.wezterm.lua" "$config_file"
+        log_success "Wezterm config linked"
+    else
+        log_warning ".wezterm.lua file not found"
+    fi
+}
+
+setup_tmux_config() {
+    local user_home
+    user_home=$(get_user_home)
+    local config_file="$user_home/.tmux.conf"
+
+    if [ -f "$SCRIPT_DIR/myterm/.tmux.conf" ]; then
+        ln -sf "$SCRIPT_DIR/myterm/.tmux.conf" "$config_file"
+        log_success "Tmux config linked"
+    else
+        log_warning ".tmux.conf file not found"
+    fi
+}
+
+setup_nvim_config() {
+    local user_home
+    user_home=$(get_user_home)
+    local config_dir="$user_home/.config/nvim"
+    # local config_file="$user_home/.tmux.conf"
+
+    if [ -f "$SCRIPT_DIR/myterm/nvim" ]; then
+        ln -sf "$SCRIPT_DIR/myterm/nvim" "$config_dit"
+        log_success "Neovim config linked"
+    else
+        log_warning "Neovim not found"
+    fi
+}
+
+setup_bash_config() {
+    local user_home
+    user_home=$(get_user_home)
+    local bashrc="$user_home/.bashrc"
+    local bash_profile="$user_home/.bash_profile"
+    local starship_config="$user_home/.config/starship.toml"
+
+    # Backup existing bashrc
+    if [ -f "$bashrc" ]; then
+        log_info "Backing up existing .bashrc"
+        mv "$bashrc" "$bashrc.backup.$(date +%Y%m%d_%H%M%S)"
+    fi
+
+    # Link new configurations
+    if [ -f "$SCRIPT_DIR/myprompt/.bashrc" ]; then
+        ln -sf "$SCRIPT_DIR/myprompt/.bashrc" "$bashrc"
+        log_success "Bashrc configuration linked"
+    else
+        log_error "Bashrc template not found"
+        return 1
+    fi
+
+    if [ -f "$SCRIPT_DIR/myprompt/starship.toml" ]; then
+        ln -sf "$SCRIPT_DIR/myprompt/starship.toml" "$starship_config"
+        log_success "Starship configuration linked"
+    else
+        log_warning "Starship config template not found"
+    fi
+
+    # Create bash_profile if needed
+    if [ ! -f "$bash_profile" ]; then
+        cat >"$bash_profile" <<'EOF'
+# Source bashrc if it exists
+if [ -f ~/.bashrc ]; then
+    . ~/.bashrc
+fi
+EOF
+        log_success "Created .bash_profile"
+    fi
+}
+
 # Main execution
 main() {
     log_info "Starting MyPrompt setup..."
 
     # Validation phase
-    # validate_requirements || exit 1
+    validate_requirements || exit 1
     validate_permissions || exit 1
 
     # Detection phase
     detect_privilege_escalation
 
     # Setup phase
-    # setup_directories || exit 1
+    setup_directories || exit 1
 
     # Installation phase
     install_core_packages || exit 1
@@ -371,9 +483,17 @@ main() {
     install_myterm_packages || exit 1
     install_myprompt_packages || exit 1
     install_graphical_packages || exit 1
+    install_tpm || exit 1
     install_fonts_packages || exit 1
     install_nerd_font
     install_fira_font
+
+    # Configuration phase
+    setup_bash_config || exit 1
+    setup_gitconfig || exit 1
+    setup_wezterm_config || exit 1
+    setup_tmux_config || exit 1
+    setup_nvim_config || exit 1
 
     log_success "Setup completed successfully!"
     log_info "Please restart your shell or run 'source ~/.bashrc' to apply changes"
