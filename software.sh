@@ -244,7 +244,7 @@ install_myprompt_packages() {
 }
 
 install_hyprland_packages() {
-    local packages="hyprland waybar hyprlock hypridle hyprpaper wofi dunst hyprpicker flameshot wlogout cliphist hyprsunset"
+    local packages="hyprland xorg-xwayland waybar hyprlock hypridle hyprpaper wofi dunst hyprpicker flameshot wlogout cliphist hyprsunset"
     local aur_helper=""
 
     # Install AUR helper if needed
@@ -456,6 +456,7 @@ main() {
     install_languages_packages || exit 1
     install_myterm_packages || exit 1
     install_myprompt_packages || exit 1
+    install_hyperland_packages || exit 1
     install_graphical_packages || exit 1
     install_fonts_packages || exit 1
     install_nerd_font
