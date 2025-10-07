@@ -1,90 +1,120 @@
-      @import "./frappe.css";
-           * {
-             border: none;
-             font-family: 'Fira Code', 'Symbols Nerd Font Mono';
-             font-size: 15px;
-             font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
-             min-height: 35px;
-           }
+@define-color bg    #1a1b26; 
+@define-color fg    #a9b1d6; 
+@define-color blk   #32344a; 
+@define-color red   #f7768e; 
+@define-color grn   #9ece6a; 
+@define-color ylw   #e0af68; 
+@define-color blu   #7aa2f7; 
+@define-color mag   #ad8ee6; 
+@define-color cyn   #0db9d7; 
+@define-color brblk #444b6a; 
+@define-color white #ffffff;
 
-           window#waybar {
-             background: transparent;
-           }
+* {
+    border: none;
+    font-family: 'Fira Code', 'Symbols Nerd Font Mono';
+    font-size: 16px;
+    font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
+    min-height: 35px;
+}
 
-           #custom-nix,
-           #workspaces {
-             border-radius: 1rem;
-             background-color: @Base;
-             color: @Subtext0;
-             margin-top: 10px;
-             margin-right: 15px;
-             padding-top: 1px;
-             padding-left: 10px;
-             padding-right: 10px;
-           }
+window#waybar {
+    background: transparent;
+    color: @fg;
+}
 
-           #custom-nix {
-             font-size: 20px;
-             margin-left: 15px;
-             color: #b4befe;
-           }
+#custom-nix,
+#workspaces {
+    margin-top: 10px;
+    margin-right: 15px;
+    padding-top: 1px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
 
-           #custom-cava-internal {
-             padding-left: 10px;
-             padding-right: 10px;
-             padding-top: 1px;
-             font-family: "Hack Nerd Font";
-             color: #b4befe;
-             background-color: @Base;
-             margin-top: 15px;
-             border-radius: 10px;
-           }
+#custom-nix {
+    font-size: 20px;
+    margin-left: 15px;
+}
 
-           #custom-separator {
-             margin-top: 10px;
-             padding-left: 7px;
-             padding-right: 7px;
-             margin-right: 9px;
-           }
+#custom-cava-internal {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 1px;
+    font-family: "Hack Nerd Font";
+    margin-top: 15px;
+    border-radius: 10px;
+}
 
-           #workspaces button.active {
-             background: @Base;
-             color: @teal;
-           }
+#custom-separator {
+    margin-top: 10px;
+    padding-left: 7px;
+    padding-right: 7px;
+    margin-right: 9px;
+}
 
-           #clock, #backlight, #pulseaudio, #bluetooth, #network, #battery, #cpu, #memory, #temperature, #custom-power, #tray {
-             border-radius: 1rem;
-             background-color: @Base;
-             color: @text;
-             margin-top: 10px;
-             padding-left: 10px;
-             padding-right: 10px;
-             margin-right: 15px;
-           }
+#workspaces button {
+    padding: 0 6px;
+    color: @cyn;
+    background: transparent;
+    border-bottom: 3px solid @bg;
+}
+#workspaces button.active {
+    color: @cyn;
+    border-bottom: 3px solid @mag;
+}
+#workspaces button.empty {
+    color: @wht;
+}
+#workspaces button.empty.active {
+    color: @cyn;
+    border-bottom: 3px solid @mag;
+}
 
-           #backlight, #bluetooth {
-             border-top-right-radius: 0;
-             border-bottom-right-radius: 0;
-             padding-right: 5px;
-             margin-right: 0
-           }
+#clock, #pulseaudio, #network, #battery, #memory, #custom-power, #tray {
+    margin-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 15px;
+}
 
-           #pulseaudio, #network {
-             border-top-left-radius: 0;
-             border-bottom-left-radius: 0;
-             padding-left: 5px;
-           }
+#clock {
+    color: @cyn;
+    border-bottom: 4px solid @cyn;
+}
 
-           #network {
-      color: @Maroon;
-           }
+#battery {
+    color: @mag;
+    border-bottom: 4px solid @mag;
+}
 
-           #clock {
-             margin-right: 0;
-      color: @Rosewater;
-      font-weight: 500;
-           }
-           #custom-power {
-	padding-left: 10px;
-	padding-right: 2px;
+#disk {
+    color: @ylw;
+    border-bottom: 4px solid @ylw;
+}
+
+#memory {
+    color: @mag;
+    border-bottom: 4px solid @mag;
+}
+
+#pulseaudio {
+    color: @grn;
+    border-bottom: 4px solid @grn;
+}
+
+#network {
+    color: @blu;
+    border-bottom: 4px solid @blu;
+}
+
+#pulseaudio, #network {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding-left: 5px;
+}
+
+#custom-power {
+    padding-left: 10px;
+    padding-right: 2px;
 }
