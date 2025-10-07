@@ -188,7 +188,7 @@ install_graphical_packages() {
 }
 
 install_myterm_packages() {
-    local packages="batcat wezterm kitty tmux eza fd lazygit ripgrep fx yazi tabiew yt-dlp lazydocker github-cli just fastfetch btop jqp tldr neovim"
+    local packages="batcat wezterm kitty tmux eza fd lazygit ripgrep fx yazi tabiew yt-dlp lazydocker github-cli just fastfetch btop jqp tldr neovim spotify-player"
     local aur_helper=""
 
     # Install AUR helper if needed
