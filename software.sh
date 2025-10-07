@@ -160,7 +160,7 @@ install_languages_packages() {
 }
 
 install_graphical_packages() {
-    local packages="firefox zen chrome calibre discord spotify? obsidian vlc qbittorrent"
+    local packages="firefox zen chrome calibre discord spotify obsidian vlc qbittorrent"
     local aur_helper=""
 
     # Install AUR helper if needed
@@ -244,7 +244,7 @@ install_myprompt_packages() {
 }
 
 install_hyprland_packages() {
-    local packages="hyprland waybar hyprlock hypridle hyprpaper rofi dunst hyprpicker flameshot wlogout cliphist hyprsunset"
+    local packages="hyprland waybar hyprlock hypridle hyprpaper wofi dunst hyprpicker flameshot wlogout cliphist hyprsunset"
     local aur_helper=""
 
     # Install AUR helper if needed
@@ -325,32 +325,6 @@ install_nerd_font() {
     rm -rf "$temp_dir"
 }
 
-install_fira_font() {
-    local font_name="FiraCode Nerd Font"
-
-    if fc-list | grep -qi "fira"; then
-        log_info "Fira font already installed"
-        return 0
-    fi
-    log_info "Installing $font_name..."
-
-    local font_url="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip"
-    local temp_dir
-    temp_dir=$(mktemp -d)
-
-    if wget -q "$font_url" -O "$temp_dir/FiraCode.zip"; then
-        unzip -q "$temp_dir/FiraCode.zip" -d "$temp_dir"
-        mkdir -p "$FONT_DIR/FiraCode"
-        find "$temp_dir" -name "*.ttf" -exec mv {} "$FONT_DIR/FiraCode/" \;
-        fc-cache -fv >/dev/null 2>&1
-        log_success "Font installed successfully"
-    else
-        log_warning "Failed to download font"
-    fi
-
-    rm -rf "$temp_dir"
-}
-
 install_tpm() {
     local tpm_dir="${HOME}/.tmux/plugins/tpm/"
     if [[ -d "$tpm_dir" ]]; then
@@ -360,7 +334,6 @@ install_tpm() {
 
     log_info "Installing TPM..."
     if git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm; then
-        # if curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/ain/install.sh | sh; then
         log_success "TPM installed successfully"
     else
         log_error "Failed to install TPM"
@@ -465,7 +438,7 @@ EOF
 
 # Main execution
 main() {
-    log_info "Starting MyPrompt setup..."
+    log_info "Starting System setup..."
 
     # Validation phase
     validate_requirements || exit 1
@@ -478,15 +451,14 @@ main() {
     setup_directories || exit 1
 
     # Installation phase
+    install_tpm || exit 1
     install_core_packages || exit 1
     install_languages_packages || exit 1
     install_myterm_packages || exit 1
     install_myprompt_packages || exit 1
     install_graphical_packages || exit 1
-    install_tpm || exit 1
     install_fonts_packages || exit 1
     install_nerd_font
-    install_fira_font
 
     # Configuration phase
     setup_bash_config || exit 1
@@ -496,7 +468,7 @@ main() {
     setup_nvim_config || exit 1
 
     log_success "Setup completed successfully!"
-    log_info "Please restart your shell or run 'source ~/.bashrc' to apply changes"
+    log_info "Please restart your system to apply changes and log into Hyprland."
 }
 
 # Run main function
