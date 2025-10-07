@@ -160,7 +160,7 @@ install_languages_packages() {
 }
 
 install_graphical_packages() {
-    local packages="firefox zen chrome calibre discord spotify obsidian vlc qbittorrent"
+    local packages="firefox zen chrome calibre discord obsidian vlc qbittorrent"
     local aur_helper=""
 
     # Install AUR helper if needed
@@ -456,7 +456,7 @@ main() {
     install_languages_packages || exit 1
     install_myterm_packages || exit 1
     install_myprompt_packages || exit 1
-    install_hyperland_packages || exit 1
+    install_hyprland_packages || exit 1
     install_graphical_packages || exit 1
     install_fonts_packages || exit 1
     install_nerd_font
