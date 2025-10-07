@@ -26,16 +26,16 @@
     "spacing": 8
 },
 	"clock": {
-          "format": "<span color='#f2d5cf'> </span>{:%H:%M}",
+          "format": "  {:%H:%M}",
           "tooltip": true,
           "tooltip-format": "{:%Y-%m-%d %a}"
         },
         "memory": {
           "interval": 1,
-          "format": "<span color='#b4befe'></span>{used:0.1f}G/{total:0.1f}G 󰍛 "
+          "format": "{used:0.1f}G/{total:0.1f}G 󰍛 "
         },
         "pulseaudio": {
-          "format": "<span color='#85c1dc'></span> {volume}% {icon}",
+          "format": "{volume}% {icon}",
           "format-muted": "",
           "tooltip": false,
           "format-icons": {
@@ -44,14 +44,6 @@
           },
           "scroll-step": 1,
           "on-click": "pavucontrol"
-        },
-        "bluetooth": {
-          "format": "<span color='#b4befe'></span>",
-          "format-disabled": "",
-          "format-connected": "<span color='#a6d189'></span> {num_connections}",
-          "tooltip-format": "{device_enumerate}",
-          "tooltip-format-enumerate-connected": "{device_alias}   {device_address}",
-          "on-click": "blueman-manager"
         },
         "network": {
           "format-wifi": "{signalStrength}% ",
