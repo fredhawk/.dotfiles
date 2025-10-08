@@ -299,32 +299,6 @@ install_fonts_packages() {
     $aur_helper -S --needed --noconfirm $packages
 }
 
-install_nerd_font() {
-    local font_name="MesloLGS Nerd Font"
-
-    if fc-list | grep -qi "meslo"; then
-        log_info "Nerd font already installed"
-        return 0
-    fi
-    log_info "Installing $font_name..."
-
-    local font_url="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Meslo.zip"
-    local temp_dir
-    temp_dir=$(mktemp -d)
-
-    if wget -q "$font_url" -O "$temp_dir/Meslo.zip"; then
-        unzip -q "$temp_dir/Meslo.zip" -d "$temp_dir"
-        mkdir -p "$FONT_DIR/MesloLGS"
-        find "$temp_dir" -name "*.ttf" -exec mv {} "$FONT_DIR/MesloLGS/" \;
-        fc-cache -fv >/dev/null 2>&1
-        log_success "Font installed successfully"
-    else
-        log_warning "Failed to download font"
-    fi
-
-    rm -rf "$temp_dir"
-}
-
 install_tpm() {
     local tpm_dir="${HOME}/.tmux/plugins/tpm/"
     if [[ -d "$tpm_dir" ]]; then
