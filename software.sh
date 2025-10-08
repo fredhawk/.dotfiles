@@ -470,6 +470,19 @@ setup_wofi_config() {
     fi
 }
 
+setup_lazygit_config() {
+    local user_home
+    user_home=$(get_user_home)
+    local config_dir="$user_home/.config/"
+
+    if [ -f "$SCRIPT_DIR/lazygit" ]; then
+        ln -sf "$SCRIPT_DIR/lazygit" "$config_dir"
+        log_success "Lazygit config linked"
+    else
+        log_warning "Lazygit not found"
+    fi
+}
+
 setup_bash_config() {
     local user_home
     user_home=$(get_user_home)
@@ -548,6 +561,7 @@ main() {
     setup_wofi_config || exit 1
     setup_waybar_config || exit 1
     setup_hyprland_config || exit 1
+    setup_lazygit_config || exit 1
 
     log_success "Setup completed successfully!"
     log_info "Please restart your system to apply changes and log into Hyprland."
