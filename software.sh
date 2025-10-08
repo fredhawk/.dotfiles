@@ -385,13 +385,88 @@ setup_nvim_config() {
     local user_home
     user_home=$(get_user_home)
     local config_dir="$user_home/.config/nvim"
-    # local config_file="$user_home/.tmux.conf"
 
     if [ -f "$SCRIPT_DIR/myterm/nvim" ]; then
-        ln -sf "$SCRIPT_DIR/myterm/nvim" "$config_dit"
+        ln -sf "$SCRIPT_DIR/myterm/nvim" "$config_dir"
         log_success "Neovim config linked"
     else
         log_warning "Neovim not found"
+    fi
+}
+
+setup_yazi_config() {
+    local user_home
+    user_home=$(get_user_home)
+    local config_dir="$user_home/.config/yazi"
+
+    if [ -f "$SCRIPT_DIR/yazi" ]; then
+        ln -sf "$SCRIPT_DIR/yazi/tokyonight-storm.toml" "$config_dir/theme.toml"
+        log_success "Yazi config linked"
+    else
+        log_warning "Yazi not found"
+    fi
+}
+setup_eza_config() {
+    local user_home
+    user_home=$(get_user_home)
+    local config_dir="$user_home/.config/eza"
+
+    if [ -f "$SCRIPT_DIR/eza" ]; then
+        ln -sf "$SCRIPT_DIR/eza/tokyonight.yml" "$config_dir/eza/theme.yml"
+        log_success "Eza config linked"
+    else
+        log_warning "Eza not found"
+    fi
+}
+setup_dunst_config() {
+    local user_home
+    user_home=$(get_user_home)
+    local config_dir="$user_home/.config/"
+
+    if [ -f "$SCRIPT_DIR/dunst" ]; then
+        ln -sf "$SCRIPT_DIR/dunst" "$config_dir"
+        log_success "Dunst config linked"
+    else
+        log_warning "Dunst not found"
+    fi
+}
+
+setup_waybar_config() {
+    local user_home
+    user_home=$(get_user_home)
+    local config_dir="$user_home/.config/"
+
+    if [ -f "$SCRIPT_DIR/waybar" ]; then
+        ln -sf "$SCRIPT_DIR/waybar" "$config_dir"
+        log_success "Waybar config linked"
+    else
+        log_warning "Waybar not found"
+    fi
+}
+
+setup_hyprland_config() {
+    local user_home
+    user_home=$(get_user_home)
+    local config_dir="$user_home/.config/"
+
+    if [ -f "$SCRIPT_DIR/hypr" ]; then
+        ln -sf "$SCRIPT_DIR/hypr" "$config_dir"
+        log_success "Hyprland config linked"
+    else
+        log_warning "Hyprland not found"
+    fi
+}
+
+setup_wofi_config() {
+    local user_home
+    user_home=$(get_user_home)
+    local config_dir="$user_home/.config/"
+
+    if [ -f "$SCRIPT_DIR/wofi" ]; then
+        ln -sf "$SCRIPT_DIR/wofi" "$config_dir"
+        log_success "Wofi config linked"
+    else
+        log_warning "Wofi not found"
     fi
 }
 
@@ -467,6 +542,12 @@ main() {
     setup_wezterm_config || exit 1
     setup_tmux_config || exit 1
     setup_nvim_config || exit 1
+    setup_yazi_config || exit 1
+    setup_eza_config || exit 1
+    setup_dunst_config || exit 1
+    setup_wofi_config || exit 1
+    setup_waybar_config || exit 1
+    setup_hyprland_config || exit 1
 
     log_success "Setup completed successfully!"
     log_info "Please restart your system to apply changes and log into Hyprland."
