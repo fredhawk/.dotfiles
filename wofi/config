@@ -27,6 +27,3 @@ key_right=Ctrl-l
 key_submit=Return
 key_forward=Tab
 key_backward=Shift-ISO_Left_Tab
-
-# stylesheet
-style=/home/skyhawk/.config/wofi/style.css
