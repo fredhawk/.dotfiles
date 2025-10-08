@@ -188,7 +188,7 @@ install_graphical_packages() {
 }
 
 install_myterm_packages() {
-    local packages="batcat wezterm kitty tmux eza fd lazygit ripgrep fx yazi tabiew yt-dlp lazydocker github-cli just fastfetch btop jqp tldr neovim spotify-player"
+    local packages="bat wezterm kitty tmux eza fd lazygit ripgrep fx yazi tabiew yt-dlp lazydocker github-cli just fastfetch btop jqp tldr neovim spotify-player"
     local aur_helper=""
 
     # Install AUR helper if needed
@@ -386,7 +386,7 @@ setup_nvim_config() {
     user_home=$(get_user_home)
     local config_dir="$user_home/.config/nvim"
 
-    if [ -f "$SCRIPT_DIR/myterm/nvim" ]; then
+    if [ -d "$SCRIPT_DIR/myterm/nvim" ]; then
         ln -sf "$SCRIPT_DIR/myterm/nvim" "$config_dir"
         log_success "Neovim config linked"
     else
@@ -399,7 +399,7 @@ setup_yazi_config() {
     user_home=$(get_user_home)
     local config_dir="$user_home/.config/yazi"
 
-    if [ -f "$SCRIPT_DIR/yazi" ]; then
+    if [ -d "$SCRIPT_DIR/yazi" ]; then
         ln -sf "$SCRIPT_DIR/yazi/tokyonight-storm.toml" "$config_dir/theme.toml"
         log_success "Yazi config linked"
     else
@@ -411,7 +411,7 @@ setup_eza_config() {
     user_home=$(get_user_home)
     local config_dir="$user_home/.config/eza"
 
-    if [ -f "$SCRIPT_DIR/eza" ]; then
+    if [ -d "$SCRIPT_DIR/eza" ]; then
         ln -sf "$SCRIPT_DIR/eza/tokyonight.yml" "$config_dir/eza/theme.yml"
         log_success "Eza config linked"
     else
@@ -423,7 +423,7 @@ setup_dunst_config() {
     user_home=$(get_user_home)
     local config_dir="$user_home/.config/"
 
-    if [ -f "$SCRIPT_DIR/dunst" ]; then
+    if [ -d "$SCRIPT_DIR/dunst" ]; then
         ln -sf "$SCRIPT_DIR/dunst" "$config_dir"
         log_success "Dunst config linked"
     else
@@ -436,7 +436,7 @@ setup_waybar_config() {
     user_home=$(get_user_home)
     local config_dir="$user_home/.config/"
 
-    if [ -f "$SCRIPT_DIR/waybar" ]; then
+    if [ -d "$SCRIPT_DIR/waybar" ]; then
         ln -sf "$SCRIPT_DIR/waybar" "$config_dir"
         log_success "Waybar config linked"
     else
@@ -449,7 +449,7 @@ setup_hyprland_config() {
     user_home=$(get_user_home)
     local config_dir="$user_home/.config/"
 
-    if [ -f "$SCRIPT_DIR/hypr" ]; then
+    if [ -d "$SCRIPT_DIR/hypr" ]; then
         ln -sf "$SCRIPT_DIR/hypr" "$config_dir"
         log_success "Hyprland config linked"
     else
@@ -462,7 +462,7 @@ setup_wofi_config() {
     user_home=$(get_user_home)
     local config_dir="$user_home/.config/"
 
-    if [ -f "$SCRIPT_DIR/wofi" ]; then
+    if [ -d "$SCRIPT_DIR/wofi" ]; then
         ln -sf "$SCRIPT_DIR/wofi" "$config_dir"
         log_success "Wofi config linked"
     else
@@ -475,7 +475,7 @@ setup_lazygit_config() {
     user_home=$(get_user_home)
     local config_dir="$user_home/.config/"
 
-    if [ -f "$SCRIPT_DIR/lazygit" ]; then
+    if [ -d "$SCRIPT_DIR/lazygit" ]; then
         ln -sf "$SCRIPT_DIR/lazygit" "$config_dir"
         log_success "Lazygit config linked"
     else
@@ -488,12 +488,12 @@ setup_bat_config() {
     user_home=$(get_user_home)
     local config_dir="$user_home/.config/"
 
-    if [ -f "$SCRIPT_DIR/bat" ]; then
+    if [ -d "$SCRIPT_DIR/bat" ]; then
         ln -sf "$SCRIPT_DIR/bat" "$config_dir"
         bat cache --build
-        log_success "Lazygit config linked"
+        log_success "Bat config linked"
     else
-        log_warning "Lazygit not found"
+        log_warning "Bat not found"
     fi
 }
 
