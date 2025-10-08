@@ -483,6 +483,20 @@ setup_lazygit_config() {
     fi
 }
 
+setup_bat_config() {
+    local user_home
+    user_home=$(get_user_home)
+    local config_dir="$user_home/.config/"
+
+    if [ -f "$SCRIPT_DIR/bat" ]; then
+        ln -sf "$SCRIPT_DIR/bat" "$config_dir"
+        bat cache --build
+        log_success "Lazygit config linked"
+    else
+        log_warning "Lazygit not found"
+    fi
+}
+
 setup_bash_config() {
     local user_home
     user_home=$(get_user_home)
@@ -562,6 +576,7 @@ main() {
     setup_waybar_config || exit 1
     setup_hyprland_config || exit 1
     setup_lazygit_config || exit 1
+    setup_bat_config || exit 1
 
     log_success "Setup completed successfully!"
     log_info "Please restart your system to apply changes and log into Hyprland."
