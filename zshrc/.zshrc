@@ -170,3 +170,5 @@ if [ -n "$TMUX" ] && [ -n "$DIRENV_DIR" ]; then
     unset -m "DIRENV_*"
 fi
 eval "$(direnv hook zsh)"
+
+export SSH_AUTH_SOCK=/home/skyhawk/.bitwarden-ssh-agent.sock

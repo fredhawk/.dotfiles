@@ -60,6 +60,9 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export EDITOR="nvim"
 export VISUAL="nvim"
 
+# Setup SSH to use Bitwarden keys.
+export SSH_AUTH_SOCK=/home/fred/.bitwarden-ssh-agent.sock
+
 # Color support
 export CLICOLOR=1
 export LESS_TERMCAP_mb=$'\e[1;31m'
@@ -72,6 +75,7 @@ export LESS_TERMCAP_us=$'\e[1;32m'
 
 # PATH additions
 export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
+
 #######################################################
 # UTILITY FUNCTIONS
 #######################################################
@@ -81,12 +85,12 @@ get_distro() {
     if [[ -f /etc/os-release ]]; then
         source /etc/os-release
         case "$ID" in
-            fedora|rhel|centos|rocky|almalinux) echo "redhat" ;;
-            ubuntu|debian|mint) echo "debian" ;;
-            arch|manjaro|endeavouros) echo "arch" ;;
-            opensuse*|sles) echo "suse" ;;
-            gentoo) echo "gentoo" ;;
-            *) echo "unknown" ;;
+        fedora | rhel | centos | rocky | almalinux) echo "redhat" ;;
+        ubuntu | debian | mint) echo "debian" ;;
+        arch | manjaro | endeavouros) echo "arch" ;;
+        opensuse* | sles) echo "suse" ;;
+        gentoo) echo "gentoo" ;;
+        *) echo "unknown" ;;
         esac
     else
         echo "unknown"
@@ -98,19 +102,19 @@ extract() {
     for file in "$@"; do
         if [[ -f "$file" ]]; then
             case "$file" in
-                *.tar.bz2) tar xjf "$file" ;;
-                *.tar.gz) tar xzf "$file" ;;
-                *.tar.xz) tar xJf "$file" ;;
-                *.bz2) bunzip2 "$file" ;;
-                *.rar) unrar x "$file" ;;
-                *.gz) gunzip "$file" ;;
-                *.tar) tar xf "$file" ;;
-                *.tbz2) tar xjf "$file" ;;
-                *.tgz) tar xzf "$file" ;;
-                *.zip) unzip "$file" ;;
-                *.Z) uncompress "$file" ;;
-                *.7z) 7z x "$file" ;;
-                *) echo "Unknown archive format: $file" ;;
+            *.tar.bz2) tar xjf "$file" ;;
+            *.tar.gz) tar xzf "$file" ;;
+            *.tar.xz) tar xJf "$file" ;;
+            *.bz2) bunzip2 "$file" ;;
+            *.rar) unrar x "$file" ;;
+            *.gz) gunzip "$file" ;;
+            *.tar) tar xf "$file" ;;
+            *.tbz2) tar xjf "$file" ;;
+            *.tgz) tar xzf "$file" ;;
+            *.zip) unzip "$file" ;;
+            *.Z) uncompress "$file" ;;
+            *.7z) 7z x "$file" ;;
+            *) echo "Unknown archive format: $file" ;;
             esac
         else
             echo "File not found: $file"
@@ -127,7 +131,7 @@ mkcd() {
 up() {
     local levels=${1:-1}
     local path=""
-    for ((i=0; i<levels; i++)); do
+    for ((i = 0; i < levels; i++)); do
         path="../$path"
     done
     cd "$path"
@@ -259,24 +263,24 @@ alias logs="sudo find /var/log -type f -exec file {} \; | grep 'text' | cut -d' 
 
 DISTRO=$(get_distro)
 case "$DISTRO" in
-    "debian")
-        alias install='sudo apt install'
-        alias update='sudo apt update && sudo apt upgrade'
-        alias search='apt search'
-        alias remove='sudo apt remove'
-        ;;
-    "redhat")
-        alias install='sudo dnf install'
-        alias update='sudo dnf update'
-        alias search='dnf search'
-        alias remove='sudo dnf remove'
-        ;;
-    "arch")
-        alias install='sudo pacman -S'
-        alias update='sudo pacman -Syu'
-        alias search='pacman -Ss'
-        alias remove='sudo pacman -R'
-        ;;
+"debian")
+    alias install='sudo apt install'
+    alias update='sudo apt update && sudo apt upgrade'
+    alias search='apt search'
+    alias remove='sudo apt remove'
+    ;;
+"redhat")
+    alias install='sudo dnf install'
+    alias update='sudo dnf update'
+    alias search='dnf search'
+    alias remove='sudo dnf remove'
+    ;;
+"arch")
+    alias install='sudo pacman -S'
+    alias update='sudo pacman -Syu'
+    alias search='pacman -Ss'
+    alias remove='sudo pacman -R'
+    ;;
 esac
 
 #######################################################
@@ -367,5 +371,5 @@ command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init bash)"
 
 # Auto-start X11 on tty1
 if [[ -z "$DISPLAY" ]] && [[ "$(tty)" = "/dev/tty1" ]]; then
-exec startx
+    exec startx
 fi

@@ -160,7 +160,7 @@ install_languages_packages() {
 }
 
 install_graphical_packages() {
-    local packages="firefox zen chrome calibre discord obsidian vlc qbittorrent"
+    local packages="firefox chrome calibre discord obsidian vlc qbittorrent bitwarden"
     local aur_helper=""
 
     # Install AUR helper if needed
@@ -216,7 +216,7 @@ install_myterm_packages() {
 }
 
 install_myprompt_packages() {
-    local packages="starship bash bash-completion tar multitail wget unzip fontconfig fzf zoxide"
+    local packages="starship bash bash-completion tar multitail wget unzip fontconfig fzf zoxide bitwarden-cli"
     local aur_helper=""
 
     # Install AUR helper if needed
