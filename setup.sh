@@ -132,7 +132,7 @@ install_core_packages() {
 }
 
 install_languages_packages() {
-    local packages="go node nix"
+    local packages="go node nix npm luarocks"
     local aur_helper=""
 
     # Install AUR helper if needed
