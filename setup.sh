@@ -216,7 +216,7 @@ install_myterm_packages() {
 }
 
 install_myprompt_packages() {
-    local packages="starship bash bash-completion tar multitail wget unzip fontconfig fzf zoxide bitwarden-cli"
+    local packages="starship bash bash-completion tar multitail wget unzip fontconfig fzf zoxide"
     local aur_helper=""
 
     # Install AUR helper if needed
